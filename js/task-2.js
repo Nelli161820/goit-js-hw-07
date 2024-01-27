@@ -28,17 +28,11 @@ const images = [
   },
 ];
 
-const galleryElement = document.querySelector(".gallery");
 
-images.forEach((image) => {
-  const liElement = document.createElement("li");
-  const imgElement = document.createElement("img");
+const galleryElement = document.querySelector(".gallery"); 
 
-  imgElement.src = image.url;
-  imgElement.alt = image.alt;
-  
+const galleryMarkup = images.reduce((markup, image) => { 
+  return (markup + `<li><img src="${image.url}" alt="${image.alt}" /></li>`);
+}, "");
 
-  liElement.appendChild(imgElement);
-
-  galleryElement.appendChild(liElement);
-});
+galleryElement.insertAdjacentHTML("beforeend", galleryMarkup); 
